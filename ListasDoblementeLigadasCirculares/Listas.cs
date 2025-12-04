@@ -15,19 +15,22 @@
         public void Agregar(string valor)
         {
             Nodo nuevoNodo = new Nodo(valor);
-            Nodo ultimo = _nodoInicial.Anterior;
+            Nodo? ultimo = _nodoInicial.Anterior;
 
-            nuevoNodo.Siguiente = _nodoInicial;
-            nuevoNodo.Anterior = ultimo;
+            if (ultimo != null)
+            {
+                nuevoNodo.Siguiente = _nodoInicial;
+                nuevoNodo.Anterior = ultimo;
 
-            ultimo.Siguiente = nuevoNodo;
-            _nodoInicial.Anterior = nuevoNodo;
+                ultimo.Siguiente = nuevoNodo;
+                _nodoInicial.Anterior = nuevoNodo;
+            }
         }
         public string ObtenerDatos()
         {
             string datos = "";
-            Nodo actual = _nodoInicial.Siguiente!;
-            while (actual != _nodoInicial)
+            Nodo? actual = _nodoInicial.Siguiente;
+            while (actual != null && actual != _nodoInicial)
             {
                 datos += actual.Valor + Environment.NewLine;
                 actual = actual.Siguiente;
@@ -37,8 +40,8 @@
 
         public Nodo? Buscar(string valor)
         {
-            Nodo actual = _nodoInicial.Siguiente!;
-            while (actual != _nodoInicial)
+            Nodo? actual = _nodoInicial.Siguiente;
+            while (actual != null && actual != _nodoInicial)
             {
                 if (actual.Valor == valor)
                 {
@@ -79,8 +82,8 @@
         public string ObtenerValoresInversos()
         {
             string datos = string.Empty;
-            Nodo actual = _nodoInicial.Anterior!;
-            while (actual != _nodoInicial)
+            Nodo? actual = _nodoInicial.Anterior;
+            while (actual != null && actual != _nodoInicial)
             {
                 datos += actual.Valor + Environment.NewLine;
                 actual = actual.Anterior;

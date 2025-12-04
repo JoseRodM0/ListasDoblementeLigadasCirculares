@@ -37,7 +37,12 @@ namespace ListasDoblementeLigadasCirculares
                 {
                     case 1:
                         Console.Write("Ingrese el nombre del postre: ");
-                        string postre = Console.ReadLine();
+                        string? postre = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(postre))
+                        {
+                            Console.WriteLine("El nombre del postre no puede estar vacío. Presiona cualquier tecla para continuar...");
+                            break;
+                        }
                         listas.Agregar(postre);
                         Console.WriteLine($"'{postre}' agregado con exito. Presiona cualquier tecla para continuar...");
                         break;
@@ -48,7 +53,12 @@ namespace ListasDoblementeLigadasCirculares
 
                     case 3:
                         Console.Write("Nombre del postre a buscar: ");
-                        string postreBuscar = Console.ReadLine();
+                        string? postreBuscar = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(postreBuscar))
+                        {
+                            Console.WriteLine("El nombre del postre no puede estar vacío.");
+                            break;
+                        }
                         var encontrado = listas.Buscar(postreBuscar);
 
                         if (encontrado != null)
@@ -59,7 +69,12 @@ namespace ListasDoblementeLigadasCirculares
                         break;
                     case 4:
                         Console.Write("Ingrese el nombre del postre a eliminar: ");
-                        string postreEliminar = Console.ReadLine();
+                        string? postreEliminar = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(postreEliminar))
+                        {
+                            Console.WriteLine("El nombre del postre no puede estar vacío.");
+                            break;
+                        }
                         bool resultado = listas.Eliminar(postreEliminar);
 
                         if (resultado)
